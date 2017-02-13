@@ -1,0 +1,85 @@
+﻿#LDAP - Lightweight Directory Access Protocol
+
+##1. Tổng quan
+LDAP là giao thức truy cập nhanh các dịch vụ thư mục
+port mặc định 389
+LDAP nằm ở tầng ứng dụng trong mô hình OSI, chạy trên TCP/IP
+LDAP gồm 3 phiên bản: LDAPv1, LDAPv2, LDAPv3. LDAPv3 được thiết kế để khắc phục các hạn chế trước đó và có thêm các tính năng mới:
+- Xác thực và dịch vụ dữ liệu bảo mật mạnh mẽ thông qua SASL
+- Chứng thực bảo mật dữ liệu thông qua TSL (SSL)
+- Quốc tế hóa thông qua sử dụng Unicode
+- Referrals and Continuations (chuyển tiếp)
+- Schema Discovery (khám phá sơ đồ).
+- Mở rộng (điều khiển, và nhiều hoạt động mở rộng khác)
+LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây(Directory Information Tree).
+<img =1 >
+
+##2. Phương thức hoạt động của LDAP
+LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP server chứa thông tin về cây thư mục (Directory Information Tree – DIT). Client kết nối đến server và gửi yêu cầu. Server phản hồi bằng chính nó hoặc trỏ tới LDAP server khác để client lấy thông tin. Trình tự khi có kết nối với LDAP:
+
+- Connect (kết nối với LDAP): client mở kết nối tới LDAP server
+- Bind (kiểu kết nối: nặc danh hoặc đăng nhập xác thực): client gửi thông tin xác thực
+- Search (tìm kiếm): client gửi yêu cầu tìm kiếm
+- Interpret search (xử lý tìm kiếm): server thực hiện xử lý tìm kiếm
+- Result (kết quả): server trả lại kết quả cho client
+- Unbind: client gửi yêu cầu đóng kết nối tới server
+- Close connection (đóng kết nối): đóng kết nối từ server
+
+##3. Database backend của LDAP
+Slapd là một “LDAP directory server” có thể chạy trên nhiều platform khác nhau. Bạn có thể sử dụng nó để cung cấp những dịch vụ của riêng mình. Những tính năng mà slapd cung cấp:
+
+- LDAPv3: slapd hỗ trợ LDAP cả IPv4, IPv6 và Unix IPC.
+- Simple Authentication and Security Layer: slapd hỗ trợ mạnh mẽ chứng thực và bảo mật dữ liệu dịch vụ bằng SASL
+- Transport Layer Security: slapd hỗ trợ sử dụng TLS hay SSL.
+
+2 database mà SLAPD sử dụng để lưu trữ dữ liệu hiện tại là bdb và hdb. 
+
+BDB sử dụng Oracle Berkeley DB để lưu trữ dữ liệu. Nó được đề nghị sử dụng làm database backend chính cho SLAPD thông thường. 
+
+HDB là cũng tương tự như BDB nhưng nó sử dụng database phân cấp nên hỗ trợ cơ sỡ dữ liệu dạng cây. HDB thường được mặc định cấu hình trong SLAPD hiện nay.
+
+##4. Lưu trữ thông tin của LDAP
+
+Ldif (LDAP Data Interchange Format) là một chuẩn định dang file text lưu trữ thông tin cấu hình LDAP và nội dung thư mục. File LDIF thường dùng để import dữ liệu mới vào trong directory hoặc thay đổi dữ liệu đã có. Dữ liệu trong file LDIF phải tuân theo quy luật có trong schema của LDAP.
+
+<img = 2>
+
+Schema là loại dữ liệu được định nghĩa từ trước. Mọi thành phần được thêm vào hoặc thay đổi trong directory của bạn sẽ được kiểm tra lại trong schema để đảm bảo chính xác.
+
+Một số các thuộc tính cơ bản trong Ldif:
+
+|STT|Tên    |Mô tả   |
+|---|-------|--------|
+|1|dn|Distinguished Name : tên gọi phân biệt|
+|2|c|country – 2 kí tự viết tắt tên của một nước|
+|3|o|organization – tổ chức|
+|4|ou|organization unit – đơn vị tổ chức|
+|5|objectClass|Mỗi giá trị objectClass hoạt động như một khuôn mẫu cho các dữ liệu được lưu giữ trong một entry. Nó định nghĩa một bộ các thuộc tính phải được trình bày trong entry (Ví dụ: entry này có giá trị của thuộc tính objectClass là eperson, mà trong eperson có quy định cần có các thuộc tính là tên, email, uid ,…thì entry này sẽ có các thuộc tính đó)|
+|6|givenName|Tên|
+|7|uid|id người dùng|
+|8|cn|common name – tên thường gọi|
+|9|telephoneNumber|số điện thoại|
+|10|sn|surname – họ|
+|11|userPassword|mật khẩu người dùng|
+|12|mail|địa chỉ email|
+|13|facsimileTelephoneNumber|số phách|
+|14|createTimestamp|thời gian tạo ra entry này|
+|15|creatorsName|tên người tạo ra entry này|
+|16|pwdChangedTime|thời gian thay đổi mật khẩu|
+|17|entryUUID|id của entry|
+
+##5. Cài đặt LDAP
+###5.1 Trên server
+####Cài đặt LDAP
+```
+sudo apt-get update
+sudo apt-get install slapd ldap-utils
+```
+
+Chọn yes
+
+<img = 3>
+
+
+
+
