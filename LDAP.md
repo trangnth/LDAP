@@ -106,15 +106,15 @@ Mở file `/etc/phpldapadmin/config.php`
 
 Trong file này, tìm và sửa tham số sau dùng để truy cập vào web interface
 ```
-$ servers-> setValue ( 'máy chủ', 'host', ' **server_domain_name_or_IP** ');
+$ servers-> setValue ( 'server', 'host', ' **server_domain_name_or_IP** ');
 ```
 
 Tiếp theo, cấu hình domain đã chọn cho LDAP server, trong ví dụ trên là ved (nếu domain là ved.com thì sửa là `dc=ved,dc=com`)
 ```
-$ servers-> setValue ( 'máy chủ', 'cơ sở', array ( 'dc = ved '));
+$ servers-> setValue ( 'server', 'base', array ( 'dc = ved '));
 ```
 ```
-$ servers-> setValue ( 'đăng nhập', 'bind_id', 'cn = admin, dc = ved ');
+$ servers-> setValue ( 'login', 'bind_id', 'cn = admin, dc = ved ');
 ```
 Tìm, uncommenting và sửa `false` thành `true` ở dòng dưới đây
 ```
