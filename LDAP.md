@@ -109,7 +109,7 @@ Trong file này, tìm và sửa tham số sau dùng để truy cập vào web in
 $ servers-> setValue ( 'máy chủ', 'host', ' **server_domain_name_or_IP** ');
 ```
 
-Tiếp theo, cấu hình tên miền đã chọn cho LDAP server, trong ví dụ trên là ved (nếu domain là ved.com thì sửa là `dc=ved,dc=com`)
+Tiếp theo, cấu hình domain đã chọn cho LDAP server, trong ví dụ trên là ved (nếu domain là ved.com thì sửa là `dc=ved,dc=com`)
 ```
 $ servers-> setValue ( 'máy chủ', 'cơ sở', array ( 'dc = ved '));
 ```
@@ -120,11 +120,49 @@ Tìm, uncommenting và sửa `false` thành `true` ở dòng dưới đây
 ```
 $ Configure> custom-> xuất hiện [ 'hide_template_warning'] = true ;
 ```
-Cuối cùng, save file và đăng nhập vào web interface  
+Cuối cùng, save file và đăng nhập vào web interface theo link: `domain_name_or_IP_address/phpldapadmin` 
 
 Trong trường hợp gặp lỗi **Error trying to get a non-existent value (appearance, password_hash)**, mở tập tin  
 ```
 nano /usr/share/phpldapadmin/lib/TemplateRender.php
 ```  
 dòng 2469 sửa `password_hash` thành `password_hash_custom`
+
+###5.2 Trên client
+####Install Client Packages
+Chạy lệnh
+```
+sudo apt-get update
+sudo apt-get install libpam-ldap nscd
+``
+Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu sau:
+- LDAP server Uniform Resource Identifier: **ldap://LDAP-server-IP-Address/** *(Thay "ldapi:///" bằng "ldap://" )*
+- Tiếp theo, cần cấu hình đúng với file `/etc/phpldapadmin/config.php file` trên LDAP server. Ở đây là `dc=ved`
+- LDAP version to use: **3**
+- Make local root Database admin: **Yes**
+- Does the LDAP database require login? **No**
+- LDAP account for root: **cn=admin,dc=test,dc=com**
+- LDAP root account password: **Your-LDAP-root-password**
+
+Nếu muốn thay đổi hoặc sai bất cứ bước nào thì chạy lệnh sau để làm lại:
+```
+sudo dpkg-reconfigure ldap-auth-config
+```
+
+####Configure Client Software
+
+Sửa file `/etc/nsswitch.conf` 
+```
+passwd:         **ldap** compat
+group:          **ldap** compat
+shadow:         **ldap** compat
+```
+
+*Tham Khảo:* 
+https://viblo.asia/tran.van.cuong/posts/zoZVRgdZMmg5
+
+https://www.digitalocean.com/community/tutorials/how-to-authenticate-client-computers-using-ldap-on-an-ubuntu-12-04-vps
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-a-basic-ldap-server-on-an-ubuntu-12-04-vps
+
 
