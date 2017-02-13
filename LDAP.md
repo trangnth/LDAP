@@ -80,6 +80,45 @@ Chọn yes
 
 <img = 3>
 
+Sau đó chạy lệnh sau để cấu hình lại:
+```
+sudo dpkg-reconfigure slapd
+```
+Trả lời một số câu hỏi sau:
+- Omit OpenLDAP server configuration? **No**
+- DNS domain name? Ví dụ domain name là ved
+<img = 4 >
+- Organization name?
+<img = 5>
+- Administrator password?
+- Database backend? **HDB**
+- Remove the database when slapd is purged? **No**
+- Move old database? **Yes**
+- Allow LDAPv2 protocol? **No**
 
+#### Cài phpLDAPadmin để quản lý LDAP với giao diện web
+```
+sudo apt-get install phpldapadmin
+```
 
+#### Cấu hình phpLDAPadmin
+Mở file `/etc/phpldapadmin/config.php`
+
+Trong file này, tìm và sửa tham số sau dùng để truy cập vào web interface
+```
+$ servers-> setValue ( 'máy chủ', 'host', ' **server_domain_name_or_IP** ');
+```
+
+Tiếp theo, cấu hình tên miền đã chọn cho LDAP server, trong ví dụ trên là ved (nếu domain là ved.com thì sửa là `dc=ved,dc=com`)
+```
+$ servers-> setValue ( 'máy chủ', 'cơ sở', array ( 'dc = ved '));
+```
+```
+$ servers-> setValue ( 'đăng nhập', 'bind_id', 'cn = admin, dc = ved ');
+```
+Tìm, uncommenting và sửa `false` thành `true` ở dòng dưới đây
+```
+$ Configure> custom-> xuất hiện [ 'hide_template_warning'] = true ;
+```
+Cuối cùng, save file và đăng nhập vào web interface  
 
