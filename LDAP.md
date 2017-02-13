@@ -122,3 +122,9 @@ $ Configure> custom-> xuất hiện [ 'hide_template_warning'] = true ;
 ```
 Cuối cùng, save file và đăng nhập vào web interface  
 
+Trong trường hợp gặp lỗi **Error trying to get a non-existent value (appearance, password_hash)**, mở tập tin  
+```
+nano /usr/share/phpldapadmin/lib/TemplateRender.php
+```  
+dòng 2469 sửa `password_hash` thành `password_hash_custom`
+
