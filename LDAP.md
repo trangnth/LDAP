@@ -138,6 +138,9 @@ sudo apt-get install libpam-ldap nscd  *
 Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu sau:
 - LDAP server Uniform Resource Identifier: **ldap://LDAP-server-IP-Address/** *(Thay "ldapi:///" bằng "ldap://" )*
 - Tiếp theo, cần cấu hình đúng với file `/etc/phpldapadmin/config.php file` trên LDAP server. Ở đây là `dc=ved`
+
+<img = 0>
+
 - LDAP version to use: **3**
 - Make local root Database admin: **Yes**
 - Does the LDAP database require login? **No**
@@ -167,6 +170,9 @@ Mở tập tin /etc/pam.d/common-session. Thêm vào dòng cuối cùng nếu mu
 `session required pam_mkhomedir.so skel=/etc/skel umask=0022` *
 
 Restart lại service `sudo /etc/init.d/nscd restart` *
+
+Bây giờ có thể login vào LDAP client theo những user đã được tạo trên LDAP server
+
 
 ##Tham Khảo: 
 
