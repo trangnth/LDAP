@@ -32,7 +32,7 @@ Slapd là một “LDAP directory server” có thể chạy trên nhiều platf
 - Simple Authentication and Security Layer: slapd hỗ trợ mạnh mẽ chứng thực và bảo mật dữ liệu dịch vụ bằng SASL
 - Transport Layer Security: slapd hỗ trợ sử dụng TLS hay SSL.
 
-2 database mà SLAPD sử dụng để lưu trữ dữ liệu hiện tại là bdb và hdb. 
+Hai database mà SLAPD sử dụng để lưu trữ dữ liệu hiện tại là bdb và hdb. 
 
 BDB sử dụng Oracle Berkeley DB để lưu trữ dữ liệu. Nó được đề nghị sử dụng làm database backend chính cho SLAPD thông thường. 
 
@@ -106,7 +106,7 @@ Mở file `/etc/phpldapadmin/config.php`
 
 Trong file này, tìm và sửa tham số sau dùng để truy cập vào web interface
 ```
-$ servers-> setValue ( 'server', 'host', ' **server_domain_name_or_IP** ');
+$ servers-> setValue ( 'server', 'host', ' server_domain_name_or_IP ');
 ```
 
 Tiếp theo, cấu hình domain đã chọn cho LDAP server, trong ví dụ trên là ved (nếu domain là ved.com thì sửa là `dc=ved,dc=com`)
@@ -133,7 +133,7 @@ dòng 2469 sửa `password_hash` thành `password_hash_custom`
 Chạy lệnh
 ```
 sudo apt-get update
-sudo apt-get install libpam-ldap nscd
+sudo apt-get install libpam-ldap nscd  *
 ```
 Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu sau:
 - LDAP server Uniform Resource Identifier: **ldap://LDAP-server-IP-Address/** *(Thay "ldapi:///" bằng "ldap://" )*
@@ -153,12 +153,23 @@ sudo dpkg-reconfigure ldap-auth-config
 
 Sửa file `/etc/nsswitch.conf` 
 ```
-passwd:         **ldap** compat
-group:          **ldap** compat
-shadow:         **ldap** compat
+passwd:          compat ldap
+group:           compat ldap
+shadow:          compat ldap
 ```
 
-*Tham Khảo:* 
+Mở tập tin /etc/pam.d/common-password sửa dòng 26, bỏ `use_authtok` đi
+```
+password [success=1 user_unknown=ignore default=die] pam_ldap.so try_first_pass
+```
+
+Mở tập tin /etc/pam.d/common-session. Thêm vào dòng cuối cùng nếu muốn mỗi user khi đăng nhập sẽ tự động tạo một thư mục user trong home
+`session required pam_mkhomedir.so skel=/etc/skel umask=0022` *
+
+Restart lại service `sudo /etc/init.d/nscd restart` *
+
+##Tham Khảo: 
+
 https://viblo.asia/tran.van.cuong/posts/zoZVRgdZMmg5
 
 https://www.digitalocean.com/community/tutorials/how-to-authenticate-client-computers-using-ldap-on-an-ubuntu-12-04-vps
