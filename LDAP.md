@@ -12,7 +12,7 @@ LDAP gồm 3 phiên bản: LDAPv1, LDAPv2, LDAPv3. LDAPv3 được thiết kế 
 - Schema Discovery (khám phá sơ đồ).
 - Mở rộng (điều khiển, và nhiều hoạt động mở rộng khác)
 LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây(Directory Information Tree).
-<img =1 >
+<img = https://github.com/trangnth/LDAP/blob/master/img/1.png >
 
 ##2. Phương thức hoạt động của LDAP
 LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP server chứa thông tin về cây thư mục (Directory Information Tree – DIT). Client kết nối đến server và gửi yêu cầu. Server phản hồi bằng chính nó hoặc trỏ tới LDAP server khác để client lấy thông tin. Trình tự khi có kết nối với LDAP:
@@ -86,7 +86,7 @@ sudo dpkg-reconfigure slapd
 ```
 Trả lời một số câu hỏi sau:
 - Omit OpenLDAP server configuration? **No**
-- DNS domain name? Ví dụ domain name là ved
+- DNS domain name? Ví dụ domain name là **ved**
 <img = 4 >
 - Organization name?
 <img = 5>
@@ -133,7 +133,7 @@ dòng 2469 sửa `password_hash` thành `password_hash_custom`
 Chạy lệnh
 ```
 sudo apt-get update
-sudo apt-get install libpam-ldap nscd  *
+sudo apt-get install libpam-ldap nscd      *
 ```
 Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu sau:
 - LDAP server Uniform Resource Identifier: **ldap://LDAP-server-IP-Address/** *(Thay "ldapi:///" bằng "ldap://" )*
@@ -167,9 +167,9 @@ password [success=1 user_unknown=ignore default=die] pam_ldap.so try_first_pass
 ```
 
 Mở tập tin /etc/pam.d/common-session. Thêm vào dòng cuối cùng nếu muốn mỗi user khi đăng nhập sẽ tự động tạo một thư mục user trong home
-`session required pam_mkhomedir.so skel=/etc/skel umask=0022` *
+`session required pam_mkhomedir.so skel=/etc/skel umask=0022`   *
 
-Restart lại service `sudo /etc/init.d/nscd restart` *
+Restart lại service `sudo /etc/init.d/nscd restart`   *
 
 Bây giờ có thể login vào LDAP client theo những user đã được tạo trên LDAP server
 
