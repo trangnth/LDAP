@@ -28,6 +28,7 @@ LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP serv
 - Close connection (đóng kết nối): đóng kết nối từ server
 
 ##3. Database backend của LDAP
+
 Slapd là một “LDAP directory server” có thể chạy trên nhiều platform khác nhau. Bạn có thể sử dụng nó để cung cấp những dịch vụ của riêng mình. Những tính năng mà slapd cung cấp:
 
 - LDAPv3: slapd hỗ trợ LDAP cả IPv4, IPv6 và Unix IPC.
@@ -89,9 +90,13 @@ sudo dpkg-reconfigure slapd
 Trả lời một số câu hỏi sau:
 - Omit OpenLDAP server configuration? **No**
 - DNS domain name? Ví dụ domain name là **ved**
+
 <img src = "https://github.com/trangnth/LDAP/blob/master/img/4.png" >
+
 - Organization name?
+
 <img src = "https://github.com/trangnth/LDAP/blob/master/img/5.png">
+
 - Administrator password?
 - Database backend? **HDB**
 - Remove the database when slapd is purged? **No**
