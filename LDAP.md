@@ -11,8 +11,10 @@ LDAP gồm 3 phiên bản: LDAPv1, LDAPv2, LDAPv3. LDAPv3 được thiết kế 
 - Referrals and Continuations (chuyển tiếp)
 - Schema Discovery (khám phá sơ đồ).
 - Mở rộng (điều khiển, và nhiều hoạt động mở rộng khác)
+
 LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây(Directory Information Tree).
-<img = https://github.com/trangnth/LDAP/blob/master/img/1.png >
+
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/1.png" >
 
 ##2. Phương thức hoạt động của LDAP
 LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP server chứa thông tin về cây thư mục (Directory Information Tree – DIT). Client kết nối đến server và gửi yêu cầu. Server phản hồi bằng chính nó hoặc trỏ tới LDAP server khác để client lấy thông tin. Trình tự khi có kết nối với LDAP:
