@@ -44,7 +44,7 @@ HDB là cũng tương tự như BDB nhưng nó sử dụng database phân cấp 
 
 Ldif (LDAP Data Interchange Format) là một chuẩn định dang file text lưu trữ thông tin cấu hình LDAP và nội dung thư mục. File LDIF thường dùng để import dữ liệu mới vào trong directory hoặc thay đổi dữ liệu đã có. Dữ liệu trong file LDIF phải tuân theo quy luật có trong schema của LDAP.
 
-<img = 2>
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/2.png">
 
 Schema là loại dữ liệu được định nghĩa từ trước. Mọi thành phần được thêm vào hoặc thay đổi trong directory của bạn sẽ được kiểm tra lại trong schema để đảm bảo chính xác.
 
@@ -80,7 +80,7 @@ sudo apt-get install slapd ldap-utils
 
 Chọn yes
 
-<img = 3>
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/3.png">
 
 Sau đó chạy lệnh sau để cấu hình lại:
 ```
@@ -89,9 +89,9 @@ sudo dpkg-reconfigure slapd
 Trả lời một số câu hỏi sau:
 - Omit OpenLDAP server configuration? **No**
 - DNS domain name? Ví dụ domain name là **ved**
-<img = 4 >
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/4.png" >
 - Organization name?
-<img = 5>
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/5.png">
 - Administrator password?
 - Database backend? **HDB**
 - Remove the database when slapd is purged? **No**
@@ -141,7 +141,7 @@ Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu 
 - LDAP server Uniform Resource Identifier: **ldap://LDAP-server-IP-Address/** *(Thay "ldapi:///" bằng "ldap://" )*
 - Tiếp theo, cần cấu hình đúng với file `/etc/phpldapadmin/config.php file` trên LDAP server. Ở đây là `dc=ved`
 
-<img = 0>
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/0.png">
 
 - LDAP version to use: **3**
 - Make local root Database admin: **Yes**
@@ -149,7 +149,7 @@ Quá trình cài đặt bắt đầu, bạn phải hoàn thành một số câu 
 - LDAP account for root: **cn=admin,dc=test,dc=com**
 - LDAP root account password: **Your-LDAP-root-password**
 
-Nếu muốn thay đổi hoặc sai bất cứ bước nào thì chạy lệnh sau để làm lại:
+Nếu muốn thay đổi hoặc sai bất cứ bước nào thì chạy lệnh sau để lặp lại quá trình trên:
 ```
 sudo dpkg-reconfigure ldap-auth-config
 ```
