@@ -131,7 +131,7 @@ Cuối cùng, save file và đăng nhập vào web interface theo link: `domain_
 
 Trong trường hợp tạo user mới gặp lỗi **Error trying to get a non-existent value (appearance, password_hash)**,
 
-<img src = "">
+<img src = "https://github.com/trangnth/LDAP/blob/master/img/error.png">
 
 mở tập tin  
 ```
