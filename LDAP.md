@@ -129,7 +129,11 @@ $ Configure> custom-> xuất hiện [ 'hide_template_warning'] = true ;
 ```
 Cuối cùng, save file và đăng nhập vào web interface theo link: `domain_name_or_IP_address/phpldapadmin` 
 
-Trong trường hợp gặp lỗi **Error trying to get a non-existent value (appearance, password_hash)**, mở tập tin  
+Trong trường hợp tạo user mới gặp lỗi **Error trying to get a non-existent value (appearance, password_hash)**,
+
+<img src = "">
+
+mở tập tin  
 ```
 nano /usr/share/phpldapadmin/lib/TemplateRender.php
 ```  
