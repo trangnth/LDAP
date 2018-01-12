@@ -1,6 +1,6 @@
-﻿#LDAP - Lightweight Directory Access Protocol
+# LDAP - Lightweight Directory Access Protocol
 
-##1. Tổng quan
+## 1. Tổng quan
 LDAP là giao thức truy cập nhanh các dịch vụ thư mục
 port mặc định 389
 LDAP nằm ở tầng ứng dụng trong mô hình OSI, chạy trên TCP/IP
@@ -16,7 +16,7 @@ LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây(Directo
 
 <img src = "https://github.com/trangnth/LDAP/blob/master/img/1.png" >
 
-##2. Phương thức hoạt động của LDAP
+## 2. Phương thức hoạt động của LDAP
 LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP server chứa thông tin về cây thư mục (Directory Information Tree – DIT). Client kết nối đến server và gửi yêu cầu. Server phản hồi bằng chính nó hoặc trỏ tới LDAP server khác để client lấy thông tin. Trình tự khi có kết nối với LDAP:
 
 - Connect (kết nối với LDAP): client mở kết nối tới LDAP server
@@ -27,7 +27,7 @@ LDAP hoạt động theo mô hình client-server. Một hoặc nhiều LDAP serv
 - Unbind: client gửi yêu cầu đóng kết nối tới server
 - Close connection (đóng kết nối): đóng kết nối từ server
 
-##3. Database backend của LDAP
+## 3. Database backend của LDAP
 
 Slapd là một “LDAP directory server” có thể chạy trên nhiều platform khác nhau. Bạn có thể sử dụng nó để cung cấp những dịch vụ của riêng mình. Những tính năng mà slapd cung cấp:
 
@@ -41,7 +41,7 @@ BDB sử dụng Oracle Berkeley DB để lưu trữ dữ liệu. Nó được đ
 
 HDB là cũng tương tự như BDB nhưng nó sử dụng database phân cấp nên hỗ trợ cơ sỡ dữ liệu dạng cây. HDB thường được mặc định cấu hình trong SLAPD hiện nay.
 
-##4. Lưu trữ thông tin của LDAP
+## 4. Lưu trữ thông tin của LDAP
 
 Ldif (LDAP Data Interchange Format) là một chuẩn định dang file text lưu trữ thông tin cấu hình LDAP và nội dung thư mục. File LDIF thường dùng để import dữ liệu mới vào trong directory hoặc thay đổi dữ liệu đã có. Dữ liệu trong file LDIF phải tuân theo quy luật có trong schema của LDAP.
 
@@ -71,9 +71,9 @@ Một số các thuộc tính cơ bản trong Ldif:
 |16|pwdChangedTime|thời gian thay đổi mật khẩu|
 |17|entryUUID|id của entry|
 
-##5. Cài đặt LDAP
-###5.1 Trên server
-####Cài đặt LDAP
+## 5. Cài đặt LDAP
+### 5.1 Trên server
+#### Cài đặt LDAP
 ```
 sudo apt-get update
 sudo apt-get install slapd ldap-utils
@@ -139,8 +139,8 @@ nano /usr/share/phpldapadmin/lib/TemplateRender.php
 ```  
 dòng 2469 sửa `password_hash` thành `password_hash_custom`
 
-###5.2 Trên client
-####Install Client Packages
+### 5.2 Trên client
+#### Install Client Packages
 Chạy lệnh
 ```
 sudo apt-get update
@@ -163,7 +163,7 @@ Nếu muốn thay đổi hoặc sai bất cứ bước nào thì chạy lệnh s
 sudo dpkg-reconfigure ldap-auth-config
 ```
 
-####Configure Client Software
+#### Configure Client Software
 
 Sửa file `/etc/nsswitch.conf` 
 ```
@@ -185,7 +185,7 @@ Restart lại service `sudo /etc/init.d/nscd restart`   *
 Bây giờ có thể login vào LDAP client theo những user đã được tạo trên LDAP server
 
 
-##Tham Khảo: 
+## Tham Khảo: 
 
 https://viblo.asia/tran.van.cuong/posts/zoZVRgdZMmg5
 
