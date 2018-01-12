@@ -12,7 +12,7 @@ LDAP gồm 3 phiên bản: LDAPv1, LDAPv2, LDAPv3. LDAPv3 được thiết kế 
 - Schema Discovery (khám phá sơ đồ).
 - Mở rộng (điều khiển, và nhiều hoạt động mở rộng khác)
 
-LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây(Directory Information Tree).
+LDAP là giao thức truy cập vì vậy nó theo mô hình dạng cây (Directory Information Tree).
 
 <img src = "https://github.com/trangnth/LDAP/blob/master/img/1.png" >
 
